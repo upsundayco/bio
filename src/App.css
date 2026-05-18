@@ -101,6 +101,125 @@ main {
   opacity: 0.7;
 }
 
+.bio .mention,
+.bio a.mention {
+  color: #3D333D;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.bio a.mention {
+  transition: opacity 0.15s ease;
+}
+
+.bio a.mention:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(40, 30, 40, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: overlay-in 220ms ease-out forwards;
+}
+
+.modal-overlay.closing {
+  animation: overlay-out 240ms ease-in forwards;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.modal-wrap {
+  position: relative;
+  width: min(640px, 100%);
+  height: min(720px, 90vh);
+  animation: card-in 360ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.modal-overlay.closing .modal-wrap {
+  animation: card-out 240ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.modal-card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #EEEEF0 0%, #F5F0F9 33%, #F6F0E5 80%, #FCE3E0 100%);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 0 0 2px rgba(255, 255, 255, 0.7) inset,
+    0 30px 60px -10px rgba(60, 50, 60, 0.35),
+    0 20px 40px -20px rgba(60, 50, 60, 0.25);
+}
+
+@keyframes card-in {
+  0%   { opacity: 0; transform: scale(0.92) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes card-out {
+  0%   { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.95) translateY(10px); }
+}
+
+.modal-close {
+  position: absolute;
+  bottom: -56px;
+  right: 0;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #3D333D;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 4px 12px rgba(60, 50, 60, 0.15);
+}
+
+.modal-close svg {
+  width: 18px;
+  height: 18px;
+  stroke: #3D333D;
+}
+
+.modal-close:hover {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
