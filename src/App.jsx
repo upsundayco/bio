@@ -63,14 +63,15 @@ const TILES = [
 ]
 
 function CalendlyModal({ open, closing, onClose }) {
-  if (!open && !closing) return null
+  const visible = open || closing
   return (
     <div
-      className={`modal-overlay${closing ? ' closing' : ''}`}
+      className={`modal-overlay${closing ? ' closing' : ''}${!visible ? ' hidden' : ''}`}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Book a discovery call"
+      aria-hidden={!visible}
     >
       <div className="modal-wrap" onClick={(e) => e.stopPropagation()}>
         <div className="modal-card">
